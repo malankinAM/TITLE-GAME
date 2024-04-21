@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Text animation</title>
+
+    <style type="text/css">
+        @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&dispay=swap');
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+        body{
+            background: url("https://wallpapercave.com/wp/wp2853150.jpg");
+            display: flex;
+            background-repeat: no-repeat;
+            background-size: cover;
+    
+        }
+        section{
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            letter-spacing: 5px;
+        }
+        section .text{
+            position: relative;
+            text-align: center;
+            color: #fff;
+            background-color: #2196f3;
+            box-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3;
+            border-radius: 10px;
+            margin: 40px;
+            padding: 20px;
+            max-width: auto;
+        }
+        section .text span{
+            position: relative;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <section>
+            <p class="text">
+                Группа дизайнеров "Аляска Алекс" - это творческий союз профессионалов, чья работа олицетворяет собой смелость и изысканность в дизайне. Они вдохновляются красотой природы Аляски и отражают её в своих проектах, создавая уникальные и запоминающиеся образы. Каждый из них приносит в коллектив свою неповторимую эстетику и видение, что делает их работы насыщенными и оригинальными. Группа "Аляска Алекс" не просто создаёт дизайн, они создают атмосферу, которая переносит нас в мир красоты и вдохновения.
+            </p>
+        </section>
+    </div>
+</body>
+<script src="anime.min.js"></script>
+<script>
+    //splitting the letter in a paragraph
+
+    const text = document.querySelector('.text');
+    text.innerHTML = text.textContent.replace(/\S/g, "<span>$&</span>");
+
+    const animation = anime.timeline(
+        {
+            targets : '.text span',
+            easing : 'easeInOutExpo',
+            loop : true,
+        }
+    );
+    animation 
+    .add({
+        rotate : function(){
+            return anime.random(-360, 360)
+        },
+        translateX: function(){
+            return anime.random(-500, 500)
+        },
+        translateY: function(){
+            return anime.random(-500, 500)
+        },
+        duration: 5000,
+        delay: anime.stagger(20),
+    })
+    .add({
+        rotate : 0,
+        translateX: 0,
+        translateY: 0,
+        duration: 5000,
+        delay: anime.stagger(20),
+    })
+
+</script>
+
+</html>
